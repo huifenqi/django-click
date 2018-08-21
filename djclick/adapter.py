@@ -196,7 +196,7 @@ class BaseRegistrator(object):
     def get_params(self, name):
         def show_help(ctx, param, value):
             if value and not ctx.resilient_parsing:
-                ctx.info_name += ' ' + name
+                # ctx.info_name += ' ' + name
                 click.echo(ctx.get_help(), color=ctx.color)
                 ctx.exit()
 
@@ -241,6 +241,17 @@ def pass_verbosity(f):
 
 class CommandRegistrator(BaseRegistrator):
     cls = CommandAdapter
+
+    common_options = [
+        click.option(
+            '--settings',
+            metavar='SETTINGS',
+            expose_value=False,
+            help=('The Python path to a settings module, e.g. '
+                  '"project.settings.dev". If this is not provided, the '
+                  'DJANGO_SETTINGS_MODULE environment variable will be used.'),
+        ),
+    ]
 
 
 class GroupRegistrator(BaseRegistrator):
