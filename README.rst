@@ -43,7 +43,7 @@ Installation
 
 ::
 
-  pip install django-click
+  pip install git+https://github.com/huifenqi/django-click.git
 
 
 Example
